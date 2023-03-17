@@ -19,7 +19,7 @@ const CHATGPT_API_KEY = process.env.OPENAI_API_KEY;
 
 const MODEL_CONFIG = {
   model: MODEL_TYPE,
-  prompt: question,
+  prompt: '',
   max_tokens: MAX_TOKENS,
   n: 1,
   stop: null,
@@ -44,7 +44,7 @@ receiver.router.post('/slack/events', (req, res) => {
   }
 });
 
-receiver.router.get('/', (req, res) => {
+receiver.router.get('/', (_, res) => {
   res.status(200).send('Welcome to the ChatGPT Slack Bot!');
 });
 
@@ -59,10 +59,11 @@ app.command('/askchatgpt', async ({ command, ack, respond }) => {
   try {
     const response = await axios.post(
       COMPLETIONS_ENDPOINT,
-      MODEL_CONFIG,
       {
-        HEADERS,
-      }
+        ...MODEL_CONFIG,
+        prompt: question,
+      },
+      HEADERS,
     );
 
     const answer = response.data.choices[0].text.trim();
@@ -85,10 +86,11 @@ app.event('app_mention', async ({ event, say }) => {
   try {
     const response = await axios.post(
       COMPLETIONS_ENDPOINT,
-      MODEL_CONFIG,
       {
-        HEADERS,
-      }
+        ...MODEL_CONFIG,
+        prompt: question,
+      },
+      HEADERS,
     );
 
     const answer = response.data.choices[0].text.trim();
