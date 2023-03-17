@@ -13,6 +13,7 @@
   "dependencies": {
     "@slack/bolt": "^3.12.2",
     "dotenv": "^16.0.3",
+    "firebase": "^9.18.0",
     "openai": "^3.2.1"
   },
   "devDependencies": {}
