@@ -152,8 +152,6 @@ app.event('app_mention', async ({ event, say }) => {
   }
 });
 
-const saveHistory = (currentHistory, answerToSave) => [...currentHistory, answerToSave]
-
 (async () => {
   await app.start(3000);
   console.log('⚡️ Server started');
