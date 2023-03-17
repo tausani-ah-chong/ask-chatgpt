@@ -1,0 +1,23 @@
+{
+  "name": "ask-chatgpt",
+  "version": "1.0.0",
+  "description": "Slack bot with chatGPT",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Tausani Ah Chong",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/bolt": "^3.12.2",
+    "@slack/web-api": "^6.8.1",
+    "axios": "^1.3.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
