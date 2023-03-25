@@ -109,15 +109,15 @@ app.event('app_mention', async ({ event, say }) => {
   // Handle thread history & messages to send to openAI
   if (threadTimeStamp != null) {
     const previousHistory = messageHistoryByThreadTS.get(threadTimeStamp)
-
-    currentMessageHistory = previousHistory
-
+  
+    currentMessageHistory = previousHistory || []
+  
     messagesForEndpoint = [...currentMessageHistory, newMessage]
   } else {
     messagesForEndpoint = [...CHAT_COMPLETION_MODEL_CONFIG.messages, newMessage]
-
+  
     currentMessageHistory = []
-  }
+  }  
   
   currentMessageHistory.push(newMessage);
 
